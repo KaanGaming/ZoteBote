@@ -2,6 +2,10 @@
 
 ZoteBote is a Discord bot, whose single purpose is to send Zote's 57 Precepts in chat.
 
+## Add Bot
+
+[Add this bot to your Discord server! (You must have Manage Server permissions)](https://discord.com/api/oauth2/authorize?client_id=938469673228468296&permissions=274877910080&scope=bot%20applications.commands)
+
 ## Usage
 
 You can just grab the .exe from Releases, and run the program! You must first create a Discord bot to run your own instance of ZoteBote though.
