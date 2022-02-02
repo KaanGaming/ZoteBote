@@ -24,15 +24,23 @@ namespace ZoteBote
             _config = new ZoteboteConfig();
 
             Console.WriteLine("Hello, cur. I'm the Zote Bot. Some call me ZoteBote. Sounds like a ridiculous name, I know.");
-            string token = null;
-            if (!GetUserSecrets(out token))
+            string token = Environment.GetEnvironmentVariable("ZOTEBOTETOKEN");
+            if (token == null)
             {
-                Console.WriteLine("Looks like you don't have a Discord token key, you clumsy little oaf!");
-                Console.Write("Give me your Discord bot's token key!: ");
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                string tokenkey = Console.ReadLine();
-                _config.Set("zotebotetoken", tokenkey);
-                Console.ResetColor();
+                if (!GetUserSecrets(out token))
+                {
+                    Console.WriteLine("Looks like you don't have a Discord token key, you clumsy little oaf!");
+                    Console.Write("Give me your Discord bot's token key!: ");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    string tokenkey = Console.ReadLine();
+                    _config.Set("zotebotetoken", tokenkey);
+                    Console.ResetColor();
+                }
+            }
+            else
+            {
+                ConsoleColor.Magenta.WriteLine("Hmm? I found an environment variable that has the Discord bot's token.");
+                _config.Set("zotebotetoken", token);
             }
             Console.WriteLine("Looks like we're ready to boot. Hold on, cur. I need to connect to Discord first.");
 
